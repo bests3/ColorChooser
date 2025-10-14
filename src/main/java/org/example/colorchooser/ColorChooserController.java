@@ -27,7 +27,7 @@ public class ColorChooserController {
     private boolean updating = false; // Prevent event loops
 
     public void initialize() {
-        // --- Slider to TextField + Color Sync ---
+        //Move slider and update color
         redSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (!updating) {
                 updating = true;
@@ -65,7 +65,7 @@ public class ColorChooserController {
             }
         });
 
-        // --- TextField to Slider + Color Sync ---
+        //Change number and update color
         redTextField.textProperty().addListener((obs, oldVal, newVal) -> {
             if (!updating) {
                 try {
@@ -77,7 +77,6 @@ public class ColorChooserController {
                     redSlider.setValue(red);
                     updateColor();
                 } catch (NumberFormatException e) {
-                    // ignore
                 } finally {
                     updating = false;
                 }
@@ -94,7 +93,6 @@ public class ColorChooserController {
                     greenSlider.setValue(green);
                     updateColor();
                 } catch (NumberFormatException e) {
-                    // ignore
                 } finally {
                     updating = false;
                 }
@@ -135,13 +133,12 @@ public class ColorChooserController {
             }
         });
 
-        // Set initial values
         redSlider.setValue(red);
         greenSlider.setValue(green);
         blueSlider.setValue(blue);
         alphaSlider.setValue(alpha);
 
-        // Initialize text fields
+        //Initialize
         redTextField.setText(String.valueOf(red));
         greenTextField.setText(String.valueOf(green));
         blueTextField.setText(String.valueOf(blue));
